@@ -16,12 +16,12 @@ const corsOptions = {
     credentials: true,
 }
 
-// app.use(cors(corsOptions))
+app.use(cors(corsOptions))
 app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook)
 
 app.all('/api/auth/*', cors(corsOptions), toNodeHandler(auth));
 
-app.use('/api', cors(corsOptions))
+// app.use('/api', cors(corsOptions))
 
 app.use(express.json({limit: '50mb'}))
 
