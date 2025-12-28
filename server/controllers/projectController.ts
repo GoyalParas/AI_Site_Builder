@@ -1,6 +1,7 @@
 import {Request, Response} from 'express'
 import prisma from '../lib/prisma.js';
 import openai from '../configs/openai.js';
+import type { Version } from '../generated/prisma/client.js';
 
 // Controller Function to Make Revision
 export const makeRevision = async (req: Request, res: Response) => {
@@ -192,7 +193,7 @@ export const rollbackToVersion = async (req: Request, res: Response) => {
             return res.status(404).json({ message: 'Project not found' });
         }
 
-        const version = project.versions.find((version)=>version.id === versionId);
+        const version = project.versions.find((version: Version)=>version.id === versionId);
 
         if(!version){
             return res.status(404).json({ message: 'Version not found' });
