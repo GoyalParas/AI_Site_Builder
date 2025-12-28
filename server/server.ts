@@ -19,7 +19,7 @@ const corsOptions = {
 // app.use(cors(corsOptions))
 app.post('/api/stripe', express.raw({type: 'application/json'}), stripeWebhook)
 
-app.all('/api/auth/{*any}', cors(corsOptions), toNodeHandler(auth));
+app.all('/api/auth/*', cors(corsOptions), toNodeHandler(auth));
 
 app.use('/api', cors(corsOptions))
 
